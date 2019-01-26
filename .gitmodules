@@ -1,0 +1,3 @@
+[submodule "smarlowucf.github.io"]
+	path = smarlowucf.github.io
+	url = git@github.com:smarlowucf/smarlowucf.github.io.git
