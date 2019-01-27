@@ -10,6 +10,13 @@ PUBLISHCONF=$(BASEDIR)/publishconf.py
 
 GITHUB_PAGES_BRANCH=master
 
+PAGESDIR=$(INPUTDIR)/pages
+POSTSDIR=$(INPUTDIR)/articles
+DATE := $(shell date +'%Y-%m-%d %H:%M:%S')
+SLUG := $(shell echo '${NAME}' | sed -e 's/[^[:alnum:]]/-/g' | tr -s '-' | tr A-Z a-z)
+AUTHORS ?= "Sean Marlow"
+EXT ?= md
+EDITOR ?= vim
 
 DEBUG ?= 0
 ifeq ($(DEBUG), 1)
@@ -78,5 +85,49 @@ github: publish
 	ghp-import -m "Generate Pelican site" -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
 	git push origin $(GITHUB_PAGES_BRANCH)
 
+newpost:
+ifdef NAME
+				echo "Title: $(NAME)" >  $(POSTSDIR)/$(SLUG).$(EXT)
+				echo "Slug: $(SLUG)" >> $(POSTSDIR)/$(SLUG).$(EXT)
+				echo "Date: $(DATE)" >> $(POSTSDIR)/$(SLUG).$(EXT)
+				echo "Modified: $(DATE)" >> $(POSTSDIR)/$(SLUG).$(EXT)
+				echo "Authors: $(AUTHORS)" >> $(POSTSDIR)/$(SLUG).$(EXT)
+				echo ""              >> $(POSTSDIR)/$(SLUG).$(EXT)
+				echo ""              >> $(POSTSDIR)/$(SLUG).$(EXT)
+				${EDITOR} ${POSTSDIR}/${SLUG}.${EXT}
+else
+				@echo 'Variable NAME is not defined.'
+				@echo 'Do make newpost NAME='"'"'Post Name'"'"
+endif
 
-.PHONY: html help clean regenerate serve serve-global devserver stopserver publish github
+editpost:
+ifdef NAME
+				${EDITOR} ${POSTSDIR}/${SLUG}.${EXT}
+else
+				@echo 'Variable NAME is not defined.'
+				@echo 'Do make editpost NAME='"'"'Post Name'"'"
+endif
+
+newpage:
+ifdef NAME
+				echo "Title: $(NAME)" >  $(PAGESDIR)/$(SLUG).$(EXT)
+				echo "Slug: $(SLUG)" >> $(PAGESDIR)/$(SLUG).$(EXT)
+				echo "Authors: $(AUTHORS)" >> $(PAGESDIR)/$(SLUG).$(EXT)
+				echo ""              >> $(PAGESDIR)/$(SLUG).$(EXT)
+				echo ""              >> $(PAGESDIR)/$(SLUG).$(EXT)
+				${EDITOR} ${PAGESDIR}/${SLUG}.$(EXT)
+else
+				@echo 'Variable NAME is not defined.'
+				@echo 'Do make newpage NAME='"'"'Page Name'"'"
+endif
+
+editpage:
+ifdef NAME
+				${EDITOR} ${PAGESDIR}/${SLUG}.$(EXT)
+else
+				@echo 'Variable NAME is not defined.'
+				@echo 'Do make editpage NAME='"'"'Page Name'"'"
+endif
+
+
+.PHONY: html help clean regenerate serve serve-global devserver stopserver publish github newpost editpost newpage editpage
