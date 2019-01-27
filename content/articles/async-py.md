@@ -32,8 +32,7 @@ Asynchronous
 
 &nbsp;
 
-Threads (Sometimes)
--------------------
+### Threads (Sometimes)
 
 Threads are lighter than processes however in Python they cannot run in
 parallel. Due to the GIL (Global Interpreter Lock) threads should not be
@@ -43,8 +42,7 @@ code that basically runs synchronously.
 Threads do work well with I/O bound code though, since most of the time
 is spent waiting on a response.
 
-Processes
----------
+### Processes
 
 Processes are heavier than threads but do not have the same issue with
 the GIL. Thus multi-processing works well for CPU and I/O bound code.
@@ -52,8 +50,7 @@ the GIL. Thus multi-processing works well for CPU and I/O bound code.
 There are a few options in Python that provide multi-processing. But we
 will focus on the asyncio event loop framework and async/await syntax.
 
-Workers (Celery, RQ)
---------------------
+### Workers (Celery, RQ)
 
 We won't go into this option but it would mainly be useful with
 distributed apps, web apps and/or service oriented projects. Celery and
@@ -61,8 +58,7 @@ RQ are distributed task queues which can concurrently run jobs with a
 pool of workers. These can be either threads, processes or combination
 of the two.
 
-How does the code compare?
-==========================
+#### How does the code compare?
 
 &nbsp;
 
@@ -217,8 +213,7 @@ concurrent code using coroutines. The execution of coroutines is managed
 via an event loop through the use of cooperative or non-preemptive
 multitasking.
 
-Coroutines
-----------
+### Coroutines
 
 In Python a coroutine is a generator that can yield values and receive
 values from the outside. This allows the function to pause execution
@@ -232,8 +227,7 @@ natively using the keywords `async`/`await`.
 >
 > Native coroutines cannot contain any `yield` statements.
 
-Generators
-----------
+### Generators
 
 Functions that can yield a value and pause execution. Control is
 returned to the calling scope. In the case of asyncio this is the event
@@ -241,8 +235,7 @@ loop. A generator object is an iterable and has the `next` function.
 This is allows the calling function to iterate over it and get values
 one by one.
 
-Tasks / Futures
----------------
+### Tasks / Futures
 
 A future is like a promise. It is a place holder to say that a value
 will exist in the future. In python you can await futures, tasks and
@@ -252,8 +245,7 @@ underlying function or an exception.
 A Task is a subclass of future that wraps a coroutine. When the
 coroutine finishes, the result of the Task is realized.
 
-Event Loop
-----------
+### Event Loop
 
 An event loop runs constantly until it's explicitly stopped. The asyncio
 loop continuously iterates over a task queue. With each future the event
@@ -262,8 +254,7 @@ another coroutine or future is called the active future is suspended and
 cooperatively/voluntarily yields control. This is called a context
 switch. The event loop then moves to the next task.
 
-Async/await
------------
+### Async/await
 
 Async/await can be considered an API to access event loops. This is idea
 is discussed by [David
@@ -286,8 +277,7 @@ Other Libraries
 
 &nbsp;
 
-Curio
------
+### Curio
 
 A library that's similar to and can replace the asyncio event loop for
 concurrent programming. It uses the same async/await syntax and
@@ -296,8 +286,7 @@ events is very different and the API is much smaller.
 [Curio](https://curio.readthedocs.io/en/latest/) performs around 20%
 faster than comparable asyncio code.
 
-Trio
-----
+### Trio
 
 [Trio](https://trio.readthedocs.io/en/latest/index.html) is also an
 async/await native I/O library for Python. Its main purpose is to help
@@ -316,8 +305,7 @@ A Few More Examples
 
 &nbsp;
 
-CPU Bound Synchronous
----------------------
+### CPU Bound Synchronous
 
 ``` {.python}
 import timeit
@@ -344,8 +332,7 @@ print('Sync took %0.2fs' % elapsed)
 Sync took 2.91s
 ```
 
-CPU Bound Multi-thread
-----------------------
+### CPU Bound Multi-thread
 
 ``` {.python}
 import timeit
@@ -388,8 +375,7 @@ Thread took 2.86s
     surprising since each thread is utilizing 100% CPU during execution.
     The GIL blocks the threads from running concurrently.
 
-CPU Bound Multi-process w/ asyncio
-----------------------------------
+### CPU Bound Multi-process w/ asyncio
 
 ``` {.python}
 import asyncio
@@ -429,8 +415,7 @@ Async took 6.34s
     task to the queue. This adds up quickly and requires an excessive
     number of context switches.
 
-With Iterative Fibonacci Algorithm
-----------------------------------
+### With Iterative Fibonacci Algorithm
 
 ``` {.python}
 ...
@@ -457,8 +442,7 @@ Async took 0.50s
 -   Now we don't have all of the context switches that come with a
     recursive algorithm.
 
-Asyncio Iterative Fibonacci Example Using Process Pool
-------------------------------------------------------
+### Asyncio Iterative Fibonacci Example Using Process Pool
 
 ``` {.python}
 import asyncio
@@ -505,8 +489,7 @@ print('Async took %0.2fs' % elapsed)
 
 -   We generate a list of tasks each running fib in the process pool.
 
-First Completed
----------------
+### First Completed
 
 ``` {.python}
 import asyncio
