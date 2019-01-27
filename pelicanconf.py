@@ -2,8 +2,13 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Sean Marlow'
-SITENAME = 'PY Blog'
-SITEURL = ''
+SITENAME = 'smarlowucf'
+SIDEBAR_DIGEST = 'Coder, Photographer, Traveler'
+# SITEURL = 'https://smarlowucf.github.io'
+SITEURL = 'http://localhost:8000'
+
+DISPLAY_PAGES_ON_MENU = True
+MENUITEMS = (('Blog', SITEURL),)
 
 PATH = 'content'
 
@@ -11,7 +16,7 @@ TIMEZONE = 'America/Chicago'
 
 DEFAULT_LANG = 'en'
 
-THEME = 'themes/pelican-hyde'
+THEME = 'themes/pelican-blue'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -22,13 +27,10 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+         ('Python.org', 'http://python.org/'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('github', 'https://github.com/smarlowucf'),)
 
 DEFAULT_PAGINATION = False
 
