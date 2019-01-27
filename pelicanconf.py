@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 AUTHOR = 'Sean Marlow'
 SITENAME = 'smarlowucf'
 SIDEBAR_DIGEST = 'Coder, Photographer, Traveler'
-# SITEURL = 'https://smarlowucf.github.io'
-SITEURL = 'http://localhost:8000'
+SITEURL = 'https://smarlowucf.github.io'
+# SITEURL = 'http://localhost:8000'
 
 DISPLAY_PAGES_ON_MENU = True
 MENUITEMS = (('Blog', SITEURL),)
