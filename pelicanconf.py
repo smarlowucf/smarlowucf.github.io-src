@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Sean Marlow'
 SITENAME = 'smarlowucf'
-SIDEBAR_DIGEST = 'Coder, Photographer, Traveler'
+SIDEBAR_DIGEST = 'Amateur, Coder, Photographer'
 SITEURL = ''
 
 DISPLAY_PAGES_ON_MENU = True
