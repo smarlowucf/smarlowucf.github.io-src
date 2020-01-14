@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
+# Author
 AUTHOR = 'Sean Marlow'
+AUTHOR_INTRO = u'Hi! I\'m a Sean - A Python developer.'
+AUTHOR_DESCRIPTION = u'Hi! I\'m a Sean - A Python developer.'
+
 SITENAME = 'smarlowucf'
-SIDEBAR_DIGEST = 'Amateur, Coder, Photographer'
-SITEURL = ''
+SITEURL = 'http://localhost:8000'
 
 DISPLAY_PAGES_ON_MENU = True
 MENUITEMS = ()
