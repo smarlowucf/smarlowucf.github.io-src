@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 
 # Author
 AUTHOR = 'Sean Marlow'
-AUTHOR_INTRO = u'Hi! I\'m a Sean - A Python developer.'
-AUTHOR_DESCRIPTION = u'Hi! I\'m a Sean - A Python developer.'
+AUTHOR_INTRO = u'Hi! I\'m Sean - A Python developer.'
+AUTHOR_DESCRIPTION = u'Hi! I\'m Sean - A Python developer.'
 
 SITENAME = 'smarlowucf'
 SITEURL = 'http://localhost:8000'

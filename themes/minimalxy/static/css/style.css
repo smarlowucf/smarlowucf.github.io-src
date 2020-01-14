@@ -387,4 +387,11 @@ ul.social li a:hover {
   #share a span {
     display: inline;
   }
+
+}
+
+@media screen and (max-width: 530px) {
+  .linenos {
+    display: none;
+  }
 }
