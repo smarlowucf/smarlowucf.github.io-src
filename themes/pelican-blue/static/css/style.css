@@ -105,9 +105,35 @@ a:active { color:#457263; text-decoration:none; }
 a:hover { text-decoration: underline; }
 
 /* Code */
-.highlight pre {
+
+.highlight code, .highlight pre {
   font-size: 14px;
-  overflow: scroll;
+  padding: 5px;
+}
+
+.highlight pre {
+    margin: 0;
+}
+
+.linenos pre {
+    text-align: right;
+    margin: 0;
+}
+
+.linenos {
+    background-color: rgba(0,0,0,.07);
+    color: rgba(0,0,0,.26);
+    border-radius: .2em 0 0 .2em;
+}
+
+.linenodiv {
+  padding: 0 5px 0 0;
+}
+
+.highlighttable, .highlight {
+  background-color: #ececec;
+  border-radius: .4em;
+  width: 100%;
 }
 
 /* Sidebar */

@@ -15,7 +15,7 @@ POSTSDIR=$(INPUTDIR)/articles
 DATE := $(shell date +'%Y-%m-%d %H:%M:%S')
 SLUG := $(shell echo '${NAME}' | sed -e 's/[^[:alnum:]]/-/g' | tr -s '-' | tr A-Z a-z)
 AUTHORS ?= "Sean Marlow"
-EXT ?= md
+EXT ?= adoc
 EDITOR ?= vim
 
 DEBUG ?= 0

@@ -7,7 +7,7 @@ SIDEBAR_DIGEST = 'Amateur, Coder, Photographer'
 SITEURL = ''
 
 DISPLAY_PAGES_ON_MENU = True
-MENUITEMS = (('Blog', 'https://smarlowucf.github.io'),)
+MENUITEMS = ()
 
 PATH = 'content'
 
@@ -15,7 +15,7 @@ TIMEZONE = 'America/Chicago'
 
 DEFAULT_LANG = 'en'
 
-THEME = 'themes/pelican-blue'
+THEME = 'themes/minimalxy'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -32,6 +32,8 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
 SOCIAL = (('github', 'https://github.com/smarlowucf'),)
 
 DEFAULT_PAGINATION = False
+
+AUTHOR_WEB = 'https://smarlowucf.github.io'
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
