@@ -14,15 +14,58 @@ Overview
 --------
 
 The goal of this presentation is to provide an example of how you can test
-software defined infrastructure code with Python integration tests.
+software defined infrastructure code with Python integration tests. It is
+a surprisingly easy step that can help solidify IaC and prevent bugs from
+propogating throughout a deployment.
+
+Key Takeaways
+^^^^^^^^^^^^^
+
+* You can test infrastructure-as-code
+* Automated testing of IaC is worthwhile
+
+Terms
+^^^^^
+
+Infrastructure-as-code (IaC)::
+
+  The process of provisioning infrastructure
+  using tested and proven software development
+  practices
+
+Configuration Management::
+
+  A process for establishing and maintaining
+  consistency of a product's performance, functional,
+  and physical attributes with its requirements,
+  design, and operational information throughout
+  its life
+
+Test driven development (TDD)::
+
+  A software development process where requirements
+  are turned into very specific test cases, then
+  the software is improved so that the tests pass
 
 Tech stack
 ^^^^^^^^^^
 
-* Pytest with Testinfra plugin for integration tests
-* Salt states for infrastructure configuration
-* Example Flask app that provides pancake ingredients
-* Terraform for automating the test suite (if time permits)
+`Salt <https://docs.saltstack.com/en/latest/>`_ ::
+
+  Is Python-based, open-source software for
+  event-driven IT automation, remote task execution,
+  and configuration management
+
+`Pytest <https://docs.pytest.org/en/latest/>`_ ::
+
+  Is a mature full-featured Python testing tool
+
+`Testinfra <https://testinfra.readthedocs.io/en/latest/>`_ ::
+
+  Is a framework for writing unit tests in Python
+  to test actual state of your servers configured
+  by management tools like Salt, Ansible, Puppet,
+  Chef
 
 App requirements
 ^^^^^^^^^^^^^^^^
@@ -43,15 +86,18 @@ to pancake types and ingredients. The endpoints include:
 * Add Type (POST): /pancakes/
 * DELETE Type: /pancakes/fake
 
-The app runs in Apache2 with the mod_wsgi plugin and is Python3 based. The data
-is stored in a json file which by default is located at /user/lib/pancake/pancakes.json.
+Infrastructure info
+^^^^^^^^^^^^^^^^^^^^
+
+* Runs in an Apache server with mod_wsgi application server plugin.
+* Pytest with Testinfra plugin for integration tests.
+* Salt states for IaC.
+* Terraform for automating the test suite (if time permits).
 
 Links
 ^^^^^
 
 * Example Flask app: https://github.com/smarlowucf/glowing-pancake
-* App config (tests & states): https://github.com/smarlowucf/glowing-pancake-config
-* Presentation files: https://github.com/smarlowucf/presentations/tree/master/tdd_iac
 * Pytest: https://docs.pytest.org/en/latest/
 * Testinfra: https://testinfra.readthedocs.io/en/latest/
 * Salt: https://docs.saltstack.com/en/latest/
@@ -269,8 +315,8 @@ instance in AWS.
    :linenos: table
    :hl_lines: 20 25
 
-   16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 tests/test_pancake.py
-   ================================= test session starts ==========================
+   16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 test_pancake.py
+   ================================= test session starts ====================
    platform linux -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- 
    /home/user/projects/venvs/mash/bin/python3
    cachedir: .pytest_cache
@@ -293,7 +339,7 @@ instance in AWS.
    test_pancake_app_get_type FAILED                              [ 92%]
    test_pancake_app_add_delete_type FAILED                       [100%]
 
-   ============================= 13 failed, 1 passed in 4.62s ===================
+   ============================= 13 failed, 1 passed in 4.62s ===============
 
 Everything fails except the os name check. This is expected as os-release
 should already match the proper value.
@@ -353,8 +399,8 @@ to confirm that the user test is now passing.
    :linenos: table
    :hl_lines: 10 25
 
-   16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 tests/test_pancake.py
-   ================================= test session starts =========================
+   16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 test_pancake.py
+   ================================= test session starts ===================
    platform linux -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- 
    /home/user/projects/venvs/mash/bin/python3
    cachedir: .pytest_cache
@@ -377,7 +423,7 @@ to confirm that the user test is now passing.
    test_pancake_app_get_type FAILED                              [ 92%]
    test_pancake_app_add_delete_type FAILED                       [100%]
 
-   ============================= 12 failed, 2 passed in 6.50s ===================
+   ============================= 12 failed, 2 passed in 6.50s ==============
 
 Add states for Apache server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -461,8 +507,8 @@ And finally re-run the test suite to confirm more tests are passing.
    :linenos: table
    :hl_lines: 11 13 15 16 17
 
-   16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 tests/test_pancake.py
-   ================================= test session starts ==========================
+   16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 test_pancake.py
+   ================================= test session starts ====================
    platform linux -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- 
    /home/user/projects/venvs/mash/bin/python3
    cachedir: .pytest_cache
@@ -485,7 +531,7 @@ And finally re-run the test suite to confirm more tests are passing.
    test_pancake_app_get_type FAILED                              [ 92%]
    test_pancake_app_add_delete_type FAILED                       [100%]
 
-   ============================= 7 failed, 7 passed in 6.81s =====================
+   ============================= 7 failed, 7 passed in 6.81s ================
 
 Add states for pancake app
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -567,8 +613,8 @@ With all states run we can confirm the test suite.
    :linenos: table
    :hl_lines: 12 14 18 19
 
-   16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 tests/test_pancake.py
-   ================================= test session starts ==========================
+   16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 test_pancake.py
+   ================================= test session starts ====================
    platform linux -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- 
    /home/user/projects/venvs/mash/bin/python3
    cachedir: .pytest_cache
@@ -591,7 +637,7 @@ With all states run we can confirm the test suite.
    test_pancake_app_get_type FAILED                              [ 92%]
    test_pancake_app_add_delete_type FAILED                       [100%]
 
-   ============================= 3 failed, 11 passed in 8.08s ===================
+   ============================= 3 failed, 11 passed in 8.08s ===============
 
 All of the app tests are still failing. For now we can manually restart Apache
 and confirm the app is running.
@@ -607,8 +653,8 @@ Re-run tests:
    :linenos: table
    :hl_lines: 21 22 23
 
-   16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 tests/test_pancake.py
-   ================================= test session starts ==========================
+   16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 test_pancake.py
+   ================================= test session starts ====================
    platform linux -- Python 3.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- 
    /home/user/projects/venvs/mash/bin/python3
    cachedir: .pytest_cache
@@ -631,7 +677,7 @@ Re-run tests:
    test_pancake_app_get_type PASSED                              [ 92%]
    test_pancake_app_add_delete_type PASSED                       [100%]
 
-   ============================= 14 passed in 8.82s ==========================
+   ============================= 14 passed in 8.82s =========================
 
 The problem here is that the app states are not properly watched by the Apache
 server state. Therefore it is not notified to restart when the new vhost config
@@ -653,3 +699,25 @@ handle an automatic restart.
        - watch:
          - pkg: apache2
          - file: /etc/apache2/vhosts.d/pancake.conf
+
+With that in place we have succesfully driven the development of Salt states
+via TDD using Pytest. As the last the example shows it's very easy for bugs
+to creep into IaC. Catching the issues early will prevent a lot of headaches 
+when it comes time to production deployment.
+
+The use of a TDD methodology is helpful here as it gave us some insight into
+what the system requirements will be. This helped drive smaller more modular
+state files that can be run and tested independently. Which in turn leads to
+a more flexible and extensible infrastructure configuration.
+
+Next steps
+----------
+
+With a test suite in place, and a set of Salt states to provision
+an instance, the next step would be to automate the entire testing process.
+For this app I chose to dive into Terraform which launches an instance in
+EC2. It triggers the Salt states to be applied and then runs the test suite
+to confirm the instance is provisioned properly. At the moment the teardown
+process is manual so the next area for exploration would be a tool to
+automate Terraform. That is beyond this tutorial but a package that may be
+helpful is `Terratest <https://github.com/gruntwork-io/terratest>`_.
