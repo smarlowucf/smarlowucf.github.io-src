@@ -16,7 +16,7 @@ Overview
 The goal of this presentation is to provide an example of how you can test
 software defined infrastructure code with Python integration tests. It is
 a surprisingly easy step that can help solidify IaC and prevent bugs from
-propogating throughout a deployment.
+propagating throughout a deployment.
 
 Key Takeaways
 ^^^^^^^^^^^^^
@@ -92,7 +92,7 @@ Infrastructure info
 * Runs in an Apache server with mod_wsgi application server plugin.
 * Pytest with Testinfra plugin for integration tests.
 * Salt states for IaC.
-* Terraform for automating the test suite (if time permits).
+* Terraform for automating the test suite (out of scope).
 
 Links
 ^^^^^
@@ -308,7 +308,7 @@ Confirm tests fail
 ^^^^^^^^^^^^^^^^^^
 
 Now that the test suite is in place we can run everything to confirm all tests
-fail. The tests are are run against a newly provisioned openSUSE Leap 15.1
+fail. The tests are run against a newly provisioned openSUSE Leap 15.1
 instance in AWS.
 
 .. code-block:: bash
@@ -430,7 +430,7 @@ Add states for Apache server
 
 There are multiple states required for the Apache server. The app requires
 two packages (apache2, apache2-mod_wsgi-python3) and the apache2 service
-to be running and enabled.
+should be running and enabled.
 
 Also we have the vhost configuration file and the wsgi Python module which
 mod_wsgi will be using to run the Flask app.
@@ -595,7 +595,7 @@ We apply the new states:
    :linenos: table
    :hl_lines: 1
 
-   $ sudo salt-call --local state.sls pancake.apache
+   $ sudo salt-call --local state.sls pancake.init
 
    ...
 
@@ -703,11 +703,11 @@ handle an automatic restart.
 With that in place we have succesfully driven the development of Salt states
 via TDD using Pytest. As the last the example shows it's very easy for bugs
 to creep into IaC. Catching the issues early will prevent a lot of headaches 
-when it comes time to production deployment.
+when it comes time for production deployment.
 
 The use of a TDD methodology is helpful here as it gave us some insight into
 what the system requirements will be. This helped drive smaller more modular
-state files that can be run and tested independently. Which in turn leads to
+state files that can be run and tested independently. This in turn leads to
 a more flexible and extensible infrastructure configuration.
 
 Next steps
@@ -716,7 +716,7 @@ Next steps
 With a test suite in place, and a set of Salt states to provision
 an instance, the next step would be to automate the entire testing process.
 For this app I chose to dive into Terraform which launches an instance in
-EC2. It triggers the Salt states to be applied and then runs the test suite
+EC2. It triggers the Salt states and then runs the test suite
 to confirm the instance is provisioned properly. At the moment the teardown
 process is manual so the next area for exploration would be a tool to
 automate Terraform. That is beyond this tutorial but a package that may be
