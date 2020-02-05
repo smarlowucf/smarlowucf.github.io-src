@@ -142,6 +142,7 @@ all packages are installed.
 
    @pytest.mark.parametrize('name', [
        ('apache2'),
+       ('python3'),
        ('python3-Flask'),
        ('apache2-mod_wsgi-python3'),
        ('git')
@@ -322,24 +323,25 @@ instance in AWS.
    cachedir: .pytest_cache
    rootdir: /home/user
    plugins: testinfra-3.2.0, cov-2.8.1
-   collected 14 items
+   collected 15 items
 
-   test_pancake_user FAILED                                      [  7%]
-   test_required_packages[apache2] FAILED                         [ 14%]
-   test_required_packages[python3-Flask] FAILED                   [ 21%]
-   test_required_packages[apache2-mod_wsgi-python3] FAILED        [ 28%]
-   test_required_packages[git] FAILED                             [ 35%]
-   test_apache2_service FAILED                                   [ 42%]
-   test_pancake_config_files[/var/lib/pancake/wsgi.py] FAILED     [ 50%]
-   test_pancake_config_files[/etc/apache2/vhosts.d/pancake.conf] FAILED [ 57%]
-   test_pancake_config_files[/var/lib/pancake/pancakes.json] FAILED [ 64%]
-   test_pancake_repo FAILED                                      [ 71%]
-   test_instance_os_name PASSED                                  [ 78%]
-   test_pancake_app_get_types FAILED                             [ 85%]
-   test_pancake_app_get_type FAILED                              [ 92%]
+   test_pancake_user FAILED                                      [  6%]
+   test_required_packages[apache2] FAILED                         [ 13%]
+   test_required_packages[python3] PASSED                         [ 20%]
+   test_required_packages[python3-Flask] FAILED                   [ 26%]
+   test_required_packages[apache2-mod_wsgi-python3] FAILED        [ 33%]
+   test_required_packages[git] FAILED                             [ 40%]
+   test_apache2_service FAILED                                   [ 46%]
+   test_pancake_config_files[/var/lib/pancake/wsgi.py] FAILED     [ 53%]
+   test_pancake_config_files[/etc/apache2/vhosts.d/pancake.conf] FAILED [ 60%]
+   test_pancake_config_files[/var/lib/pancake/pancakes.json] FAILED [ 66%]
+   test_pancake_repo FAILED                                      [ 73%]
+   test_instance_os_name PASSED                                  [ 80%]
+   test_pancake_app_get_types FAILED                             [ 86%]
+   test_pancake_app_get_type FAILED                              [ 93%]
    test_pancake_app_add_delete_type FAILED                       [100%]
 
-   ============================= 13 failed, 1 passed in 4.62s ===============
+   ============================= 13 failed, 2 passed in 4.62s ===============
 
 Everything fails except the os name check. This is expected as os-release
 should already match the proper value.
@@ -406,24 +408,25 @@ to confirm that the user test is now passing.
    cachedir: .pytest_cache
    rootdir: /home/user
    plugins: testinfra-3.2.0, cov-2.8.1
-   collected 14 items
+   collected 15 items
 
-   test_pancake_user PASSED                                      [  7%]
-   test_required_packages[apache2] FAILED                         [ 14%]
-   test_required_packages[python3-Flask] FAILED                   [ 21%]
-   test_required_packages[apache2-mod_wsgi-python3] FAILED        [ 28%]
-   test_required_packages[git] FAILED                             [ 35%]
-   test_apache2_service FAILED                                   [ 42%]
-   test_pancake_config_files[/var/lib/pancake/wsgi.py] FAILED     [ 50%]
-   test_pancake_config_files[/etc/apache2/vhosts.d/pancake.conf] FAILED [ 57%]
-   test_pancake_config_files[/var/lib/pancake/pancakes.json] FAILED [ 64%]
-   test_pancake_repo FAILED                                      [ 71%]
-   test_instance_os_name PASSED                                  [ 78%]
-   test_pancake_app_get_types FAILED                             [ 85%]
-   test_pancake_app_get_type FAILED                              [ 92%]
+   test_pancake_user PASSED                                      [  6%]
+   test_required_packages[apache2] FAILED                         [ 13%]
+   test_required_packages[python3] PASSED                         [ 20%]
+   test_required_packages[python3-Flask] FAILED                   [ 26%]
+   test_required_packages[apache2-mod_wsgi-python3] FAILED        [ 33%]
+   test_required_packages[git] FAILED                             [ 40%]
+   test_apache2_service FAILED                                   [ 46%]
+   test_pancake_config_files[/var/lib/pancake/wsgi.py] FAILED     [ 53%]
+   test_pancake_config_files[/etc/apache2/vhosts.d/pancake.conf] FAILED [ 60%]
+   test_pancake_config_files[/var/lib/pancake/pancakes.json] FAILED [ 66%]
+   test_pancake_repo FAILED                                      [ 73%]
+   test_instance_os_name PASSED                                  [ 80%]
+   test_pancake_app_get_types FAILED                             [ 86%]
+   test_pancake_app_get_type FAILED                              [ 93%]
    test_pancake_app_add_delete_type FAILED                       [100%]
 
-   ============================= 12 failed, 2 passed in 6.50s ==============
+   ============================= 12 failed, 3 passed in 6.50s ==============
 
 Add states for Apache server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -514,24 +517,25 @@ And finally re-run the test suite to confirm more tests are passing.
    cachedir: .pytest_cache
    rootdir: /home/user
    plugins: testinfra-3.2.0, cov-2.8.1
-   collected 14 items
+   collected 15 items
 
-   test_pancake_user PASSED                                      [  7%]
-   test_required_packages[apache2] PASSED                         [ 14%]
-   test_required_packages[python3-Flask] FAILED                   [ 21%]
-   test_required_packages[apache2-mod_wsgi-python3] PASSED        [ 28%]
-   test_required_packages[git] FAILED                             [ 35%]
-   test_apache2_service PASSED                                   [ 42%]
-   test_pancake_config_files[/var/lib/pancake/wsgi.py] PASSED     [ 50%]
-   test_pancake_config_files[/etc/apache2/vhosts.d/pancake.conf] PASSED [ 57%]
-   test_pancake_config_files[/var/lib/pancake/pancakes.json] FAILED [ 64%]
-   test_pancake_repo FAILED                                      [ 71%]
-   test_instance_os_name PASSED                                  [ 78%]
-   test_pancake_app_get_types FAILED                             [ 85%]
-   test_pancake_app_get_type FAILED                              [ 92%]
+   test_pancake_user PASSED                                      [  6%]
+   test_required_packages[apache2] PASSED                         [ 13%]
+   test_required_packages[python3] PASSED                         [ 20%]
+   test_required_packages[python3-Flask] FAILED                   [ 26%]
+   test_required_packages[apache2-mod_wsgi-python3] PASSED        [ 33%]
+   test_required_packages[git] FAILED                             [ 40%]
+   test_apache2_service PASSED                                   [ 46%]
+   test_pancake_config_files[/var/lib/pancake/wsgi.py] PASSED     [ 53%]
+   test_pancake_config_files[/etc/apache2/vhosts.d/pancake.conf] PASSED [ 60%]
+   test_pancake_config_files[/var/lib/pancake/pancakes.json] FAILED [ 66%]
+   test_pancake_repo FAILED                                      [ 73%]
+   test_instance_os_name PASSED                                  [ 80%]
+   test_pancake_app_get_types FAILED                             [ 86%]
+   test_pancake_app_get_type FAILED                              [ 93%]
    test_pancake_app_add_delete_type FAILED                       [100%]
 
-   ============================= 7 failed, 7 passed in 6.81s ================
+   ============================= 7 failed, 8 passed in 6.81s ================
 
 Add states for pancake app
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -620,24 +624,25 @@ With all states run we can confirm the test suite.
    cachedir: .pytest_cache
    rootdir: /home/user
    plugins: testinfra-3.2.0, cov-2.8.1
-   collected 14 items
+   collected 15 items
 
-   test_pancake_user PASSED                                      [  7%]
-   test_required_packages[apache2] PASSED                         [ 14%]
-   test_required_packages[python3-Flask] PASSED                   [ 21%]
-   test_required_packages[apache2-mod_wsgi-python3] PASSED        [ 28%]
-   test_required_packages[git] PASSED                             [ 35%]
-   test_apache2_service PASSED                                   [ 42%]
-   test_pancake_config_files[/var/lib/pancake/wsgi.py] PASSED     [ 50%]
-   test_pancake_config_files[/etc/apache2/vhosts.d/pancake.conf] PASSED [ 57%]
-   test_pancake_config_files[/var/lib/pancake/pancakes.json] PASSED [ 64%]
-   test_pancake_repo PASSED                                      [ 71%]
-   test_instance_os_name PASSED                                  [ 78%]
-   test_pancake_app_get_types FAILED                             [ 85%]
-   test_pancake_app_get_type FAILED                              [ 92%]
+   test_pancake_user PASSED                                      [  6%]
+   test_required_packages[apache2] PASSED                         [ 13%]
+   test_required_packages[python3] PASSED                         [ 20%]
+   test_required_packages[python3-Flask] PASSED                   [ 26%]
+   test_required_packages[apache2-mod_wsgi-python3] PASSED        [ 33%]
+   test_required_packages[git] PASSED                             [ 40%]
+   test_apache2_service PASSED                                   [ 46%]
+   test_pancake_config_files[/var/lib/pancake/wsgi.py] PASSED     [ 54%]
+   test_pancake_config_files[/etc/apache2/vhosts.d/pancake.conf] PASSED [ 60%]
+   test_pancake_config_files[/var/lib/pancake/pancakes.json] PASSED [ 66%]
+   test_pancake_repo PASSED                                      [ 73%]
+   test_instance_os_name PASSED                                  [ 80%]
+   test_pancake_app_get_types FAILED                             [ 86%]
+   test_pancake_app_get_type FAILED                              [ 93%]
    test_pancake_app_add_delete_type FAILED                       [100%]
 
-   ============================= 3 failed, 11 passed in 8.08s ===============
+   ============================= 3 failed, 12 passed in 8.08s ===============
 
 All of the app tests are still failing. For now we can manually restart Apache
 and confirm the app is running.
@@ -660,24 +665,25 @@ Re-run tests:
    cachedir: .pytest_cache
    rootdir: /home/user
    plugins: testinfra-3.2.0, cov-2.8.1
-   collected 14 items
+   collected 15 items
 
-   test_pancake_user PASSED                                      [  7%]
-   test_required_packages[apache2] PASSED                         [ 14%]
-   test_required_packages[python3-Flask] PASSED                   [ 21%]
-   test_required_packages[apache2-mod_wsgi-python3] PASSED        [ 28%]
-   test_required_packages[git] PASSED                             [ 35%]
-   test_apache2_service PASSED                                   [ 42%]
-   test_pancake_config_files[/var/lib/pancake/wsgi.py] PASSED     [ 50%]
-   test_pancake_config_files[/etc/apache2/vhosts.d/pancake.conf] PASSED [ 57%]
-   test_pancake_config_files[/var/lib/pancake/pancakes.json] PASSED [ 64%]
-   test_pancake_repo PASSED                                      [ 71%]
-   test_instance_os_name PASSED                                  [ 78%]
-   test_pancake_app_get_types PASSED                             [ 85%]
-   test_pancake_app_get_type PASSED                              [ 92%]
+   test_pancake_user PASSED                                      [  6%]
+   test_required_packages[apache2] PASSED                         [ 13%]
+   test_required_packages[python3] PASSED                         [ 20%]
+   test_required_packages[python3-Flask] PASSED                   [ 26%]
+   test_required_packages[apache2-mod_wsgi-python3] PASSED        [ 33%]
+   test_required_packages[git] PASSED                             [ 40%]
+   test_apache2_service PASSED                                   [ 46%]
+   test_pancake_config_files[/var/lib/pancake/wsgi.py] PASSED     [ 53%]
+   test_pancake_config_files[/etc/apache2/vhosts.d/pancake.conf] PASSED [ 60%]
+   test_pancake_config_files[/var/lib/pancake/pancakes.json] PASSED [ 66%]
+   test_pancake_repo PASSED                                      [ 73%]
+   test_instance_os_name PASSED                                  [ 80%]
+   test_pancake_app_get_types PASSED                             [ 86%]
+   test_pancake_app_get_type PASSED                              [ 93%]
    test_pancake_app_add_delete_type PASSED                       [100%]
 
-   ============================= 14 passed in 8.82s =========================
+   ============================= 15 passed in 8.82s =========================
 
 The problem here is that the app states are not properly watched by the Apache
 server state. Therefore it is not notified to restart when the new vhost config
