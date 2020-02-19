@@ -314,7 +314,7 @@ instance in AWS.
 
 .. code-block:: bash
    :linenos: table
-   :hl_lines: 20 25
+   :hl_lines: 12 21 26
 
    16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 test_pancake.py
    ================================= test session starts ====================
@@ -399,7 +399,7 @@ to confirm that the user test is now passing.
 
 .. code-block:: bash
    :linenos: table
-   :hl_lines: 10 25
+   :hl_lines: 10 26
 
    16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 test_pancake.py
    ================================= test session starts ===================
@@ -508,7 +508,7 @@ And finally re-run the test suite to confirm more tests are passing.
 
 .. code-block:: bash
    :linenos: table
-   :hl_lines: 11 13 15 16 17
+   :hl_lines: 11 14 16 17 18 26
 
    16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 test_pancake.py
    ================================= test session starts ====================
@@ -615,7 +615,7 @@ With all states run we can confirm the test suite.
 
 .. code-block:: bash
    :linenos: table
-   :hl_lines: 12 14 18 19
+   :hl_lines: 13 15 19 20 26
 
    16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 test_pancake.py
    ================================= test session starts ====================
@@ -656,7 +656,7 @@ Re-run tests:
 
 .. code-block:: bash
    :linenos: table
-   :hl_lines: 21 22 23
+   :hl_lines: 22 23 24 26
 
    16:54:57 ▶ pytest -v --ssh-config ssh.conf --hosts 0.0.0.0 test_pancake.py
    ================================= test session starts ====================
