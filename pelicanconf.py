@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = 'Sean Marlow'
 AUTHOR_INTRO = u'Hi! I\'m Sean - A Python developer.'
 AUTHOR_DESCRIPTION = u'Hi! I\'m Sean - A Python developer.'
+AUTHOR_AVATAR = 'https://i.stack.imgur.com/L2czk.jpg?s=328&g=1'
 
 SITENAME = 'smarlowucf'
 SITEURL = 'http://localhost:8000'
@@ -32,7 +33,10 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Python.org', 'http://python.org/'),)
 
 # Social widget
-SOCIAL = (('github', 'https://github.com/smarlowucf'),)
+SOCIAL = (
+    ('github', 'https://github.com/smarlowucf'),
+    ('stack-overflow', 'https://stackoverflow.com/users/5026601/smarlowucf'),
+)
 
 DEFAULT_PAGINATION = False
 
